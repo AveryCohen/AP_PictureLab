@@ -98,6 +98,62 @@ public class Picture extends SimplePicture
     }
   }
 
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+
+  public void negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255 - pixelObj.getRed());
+        pixelObj.setBlue(255 - pixelObj.getBlue());
+        pixelObj.setGreen(255 - pixelObj.getGreen());
+      }
+    }
+  }
+  public void greyscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int ave = (pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen())/3;
+        pixelObj.setRed(ave);
+        pixelObj.setBlue(ave);
+        pixelObj.setGreen(ave);
+      }
+    }
+  }
+  public void fixWater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+          if (pixelObj.getRed()<=20) {
+            pixelObj.setRed(pixelObj+=);
+          }
+          else {
+          }
+      }
+    }
+  }
+
   /** Method that mirrors the picture around a
    * vertical mirror in the center of the picture
    * from left to right */
@@ -223,9 +279,9 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args)
   {
-    Picture beach = new Picture("images/beach.jpg");
+    Picture beach = new Picture("images/water.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.fixWater();
     beach.explore();
   }
 
